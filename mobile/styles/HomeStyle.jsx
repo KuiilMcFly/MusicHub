@@ -4,7 +4,6 @@ const HomeStyles = StyleSheet.create({
   title: {
     color: 'black',
     fontSize: 25,
-    marginTop: 10,
   },
 
   homeContainer: {
@@ -39,6 +38,19 @@ const HomeStyles = StyleSheet.create({
   customSections: {
     width: 175,
     height: 175,
+  },
+  menuIconImage: {
+    width: 30,
+    height: 30,
+  },
+
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
   },
 });
 
