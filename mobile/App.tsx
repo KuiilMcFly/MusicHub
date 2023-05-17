@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Login} from './screens/Login';
 import RegistrationScreen from './screens/Register';
+import {HomeScreen} from './screens/HomeScreen';
 
 export const WelcomeScreen = ({navigation}) => {
   return (
@@ -21,9 +22,14 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="WelcomeScreen">
-        <Stack.Screen name="Home" component={WelcomeScreen} />
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={RegistrationScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

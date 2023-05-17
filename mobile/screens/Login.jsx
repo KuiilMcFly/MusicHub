@@ -20,7 +20,7 @@ export const Login = () => {
     console.log('Email:', email);
     console.log('Password:', password);
 
-    //Pulisci l'input dopo aver premuto il tasto di login
+    // Pulisci l'input dopo aver premuto il tasto di login
     setEmail('');
     setPassword('');
   };
@@ -45,7 +45,10 @@ export const Login = () => {
       <TouchableOpacity
         onPress={handleLogin}
         disabled={!isValid}
-        style={{backgroundColor: isValid ? '#007AFF' : '#D3D3D3', padding: 10}}>
+        style={{
+          backgroundColor: isValid ? '#007AFF' : '#D3D3D3',
+          padding: 10,
+        }}>
         <Text style={{color: 'white', textAlign: 'center'}}>Login</Text>
       </TouchableOpacity>
     </View>

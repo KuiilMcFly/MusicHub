@@ -17,6 +17,11 @@ export const AppLoginButton = ({navigation}) => {
         title="Register"
         onPress={() => navigation.navigate('Register')}
       />
+      <CustomButton
+        style={styles.welcomeButtons}
+        title="Home (Temporaneo)"
+        onPress={() => navigation.navigate('Home')}
+      />
     </View>
   );
 };
