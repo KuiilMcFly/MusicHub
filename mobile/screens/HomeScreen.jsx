@@ -8,8 +8,8 @@ import {
   DrawerLayoutAndroid,
 } from 'react-native';
 import HomeStyles from '../styles/HomeStyle';
-import CustomButton from '../components/CustomButton';
 import {SearchBar} from '../components/SearchBar';
+import {MyMusic} from '../components/MyMusic';
 
 export const HomeScreen = () => {
   const drawerRef = useRef(null);
@@ -52,19 +52,12 @@ export const HomeScreen = () => {
         <Text style={HomeStyles.title}>MusicHub</Text>
         <Image
           source={require('../assets/settings.png')}
-          style={HomeStyles.SearchIcon}
+          style={HomeStyles.settingIcon}
         />
       </View>
 
       <View style={HomeStyles.homeContainer}>
-        <SearchBar />
-        <View style={HomeStyles.sectionButton}>
-          <CustomButton
-            title="Brani Salvati"
-            style={HomeStyles.customSections}
-          />
-          <CustomButton title="Playlists" style={HomeStyles.customSections} />
-        </View>
+        <MyMusic />
       </View>
     </DrawerLayoutAndroid>
   );

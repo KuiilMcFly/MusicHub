@@ -52,6 +52,11 @@ const HomeStyles = StyleSheet.create({
     marginRight: 10,
     marginBottom: 10,
   },
+
+  settingIcon: {
+    width: 30,
+    height: 30,
+  },
 });
 
 export default HomeStyles;

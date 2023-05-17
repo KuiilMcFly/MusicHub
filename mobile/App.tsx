@@ -7,6 +7,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Login} from './screens/Login';
 import RegistrationScreen from './screens/Register';
 import {HomeScreen} from './screens/HomeScreen';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {SearchBar} from './components/SearchBar';
 
 export const WelcomeScreen = ({navigation}) => {
   return (
@@ -17,6 +19,7 @@ export const WelcomeScreen = ({navigation}) => {
 };
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
@@ -27,12 +30,25 @@ const App = () => {
         <Stack.Screen name="Register" component={RegistrationScreen} />
         <Stack.Screen
           name="Home"
-          component={HomeScreen}
+          component={MyTabs}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen name="Search" component={SearchBar} />
+    </Tab.Navigator>
+  );
+}
 
 export default App;
