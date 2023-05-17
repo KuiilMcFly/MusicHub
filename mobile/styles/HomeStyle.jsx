@@ -57,6 +57,41 @@ const HomeStyles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  modalContainer: {
+    backgroundColor: '#AFAEAE',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '80%',
+    height: '20%',
+    position: 'absolute',
+    top: '40%',
+    left: '10%',
+    right: '10%',
+    bottom: '40%',
+    borderRadius: 15,
+  },
+
+  logoutConfirmationText: {
+    color: 'black',
+    fontSize: 20,
+  },
+  flexButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 10,
+  },
+  logoutButtonText: {
+    color: 'black',
+    textAlign: 'center',
+  },
+
+  logoutButton: {
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.50)',
+    borderRadius: 15,
+    width: 100,
+  },
 });
 
 export default HomeStyles;

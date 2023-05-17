@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   DrawerLayoutAndroid,
+  Modal,
   Alert,
 } from 'react-native';
 import HomeStyles from '../styles/HomeStyle';
@@ -33,18 +34,6 @@ export const HomeScreen = ({navigation}) => {
     setLogoutConfirmationVisible(false);
   };
 
-  const showLogoutConfirmation = () => {
-    Alert.alert(
-      'Logout',
-      'Sei sicuro di voler uscire da questo account?',
-      [
-        {text: 'Annulla', onPress: cancelLogout},
-        {text: 'Conferma', onPress: confirmLogout},
-      ],
-      {cancelable: false},
-    );
-  };
-
   return (
     <View>
       <View style={HomeStyles.header}>
@@ -65,23 +54,30 @@ export const HomeScreen = ({navigation}) => {
         <MyMusic />
       </View>
 
-      {logoutConfirmationVisible && (
-        <View style={HomeStyles.logoutConfirmation}>
-          <Text style={HomeStyles.logoutConfirmationText}>
-            Sei sicuro di voler uscire da questo account?
-          </Text>
-          <TouchableOpacity
-            onPress={confirmLogout}
-            style={HomeStyles.logoutButton}>
-            <Text style={HomeStyles.logoutButtonText}>Conferma</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={cancelLogout}
-            style={HomeStyles.logoutButton}>
-            <Text style={HomeStyles.logoutButtonText}>Annulla</Text>
-          </TouchableOpacity>
+      <Modal
+        visible={logoutConfirmationVisible}
+        animationType="slide"
+        transparent={true}>
+        <View style={HomeStyles.modalContainer}>
+          <View style={HomeStyles.modalContent}>
+            <Text style={HomeStyles.logoutConfirmationText}>
+              Sei sicuro di voler uscire?
+            </Text>
+            <View style={HomeStyles.flexButtons}>
+              <TouchableOpacity
+                onPress={confirmLogout}
+                style={HomeStyles.logoutButton}>
+                <Text style={HomeStyles.logoutButtonText}>Conferma</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={cancelLogout}
+                style={HomeStyles.logoutButton}>
+                <Text style={HomeStyles.logoutButtonText}>Annulla</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-      )}
+      </Modal>
     </View>
   );
 };
