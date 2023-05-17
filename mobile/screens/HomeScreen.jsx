@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -6,46 +6,51 @@ import {
   Image,
   TouchableOpacity,
   DrawerLayoutAndroid,
+  Alert,
 } from 'react-native';
 import HomeStyles from '../styles/HomeStyle';
 import {SearchBar} from '../components/SearchBar';
 import {MyMusic} from '../components/MyMusic';
 
-export const HomeScreen = () => {
+export const HomeScreen = ({navigation}) => {
   const drawerRef = useRef(null);
+  const [logoutConfirmationVisible, setLogoutConfirmationVisible] =
+    useState(false);
 
-  const openDrawer = () => {
-    drawerRef.current.openDrawer();
+  const handleLogout = () => {
+    setLogoutConfirmationVisible(true);
   };
 
-  const closeDrawer = () => {
-    drawerRef.current.closeDrawer();
+  const confirmLogout = () => {
+    // Effettua qui la logica per il logout
+    // ...
+
+    setLogoutConfirmationVisible(false);
+    navigation.navigate('WelcomeScreen');
   };
 
-  const navigationView = (
-    <View style={HomeStyles.drawerContainer}>
-      <TouchableOpacity onPress={closeDrawer}>
-        <Text style={HomeStyles.drawerItem}>Menu Item 1</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={closeDrawer}>
-        <Text style={HomeStyles.drawerItem}>Menu Item 2</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={closeDrawer}>
-        <Text style={HomeStyles.drawerItem}>Menu Item 3</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  const cancelLogout = () => {
+    setLogoutConfirmationVisible(false);
+  };
+
+  const showLogoutConfirmation = () => {
+    Alert.alert(
+      'Logout',
+      'Sei sicuro di voler uscire da questo account?',
+      [
+        {text: 'Annulla', onPress: cancelLogout},
+        {text: 'Conferma', onPress: confirmLogout},
+      ],
+      {cancelable: false},
+    );
+  };
 
   return (
-    <DrawerLayoutAndroid
-      ref={drawerRef}
-      drawerWidth={300}
-      drawerPosition={'left'}
-      renderNavigationView={() => navigationView}>
+    <View>
       <View style={HomeStyles.header}>
-        <TouchableOpacity onPress={openDrawer} style={HomeStyles.menuIcon}>
+        <TouchableOpacity onPress={handleLogout} style={HomeStyles.menuIcon}>
           <Image
-            source={require('../assets/hamburger.png')}
+            source={require('../assets/exit.png')}
             style={HomeStyles.menuIconImage}
           />
         </TouchableOpacity>
@@ -59,6 +64,24 @@ export const HomeScreen = () => {
       <View style={HomeStyles.homeContainer}>
         <MyMusic />
       </View>
-    </DrawerLayoutAndroid>
+
+      {logoutConfirmationVisible && (
+        <View style={HomeStyles.logoutConfirmation}>
+          <Text style={HomeStyles.logoutConfirmationText}>
+            Sei sicuro di voler uscire da questo account?
+          </Text>
+          <TouchableOpacity
+            onPress={confirmLogout}
+            style={HomeStyles.logoutButton}>
+            <Text style={HomeStyles.logoutButtonText}>Conferma</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={cancelLogout}
+            style={HomeStyles.logoutButton}>
+            <Text style={HomeStyles.logoutButtonText}>Annulla</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+    </View>
   );
 };

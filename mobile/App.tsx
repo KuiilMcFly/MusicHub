@@ -42,7 +42,7 @@ function MyTabs() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Home"
+        name="Hub"
         component={HomeScreen}
         options={{headerShown: false}}
       />
