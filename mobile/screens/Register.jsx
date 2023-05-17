@@ -1,32 +1,33 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import FormStyles from '../styles/LoginRegisterSyles';
 
-export const Login = () => {
+const RegistrationScreen = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isValid, setIsValid] = useState(false);
 
-  useEffect(() => {
-    // Controlla lo stato dell'email
-    if (email.trim() !== '' && password.trim() !== '') {
-      setIsValid(true);
-    } else {
-      setIsValid(false);
-    }
-  }, [email, password]);
-
-  const handleLogin = () => {
+  const handleRegistration = () => {
+    // Perform registration logic
+    console.log('Name:', name);
     console.log('Email:', email);
     console.log('Password:', password);
 
-    //Pulisci l'input dopo aver premuto il tasto di login
+    // Clear input fields
+    setName('');
     setEmail('');
     setPassword('');
   };
 
   return (
     <View style={FormStyles.loginContainer}>
+      <TextInput
+        placeholder="Name"
+        placeholderTextColor="gray"
+        value={name}
+        onChangeText={text => setName(text)}
+        style={FormStyles.loginTextInput}
+      />
       <TextInput
         placeholder="Email"
         placeholderTextColor="gray"
@@ -43,11 +44,12 @@ export const Login = () => {
         style={FormStyles.loginTextInput}
       />
       <TouchableOpacity
-        onPress={handleLogin}
-        disabled={!isValid}
-        style={{backgroundColor: isValid ? '#007AFF' : '#D3D3D3', padding: 10}}>
-        <Text style={{color: 'white', textAlign: 'center'}}>Login</Text>
+        onPress={handleRegistration}
+        style={{backgroundColor: '#007AFF', padding: 10}}>
+        <Text style={{color: 'white', textAlign: 'center'}}>Register</Text>
       </TouchableOpacity>
     </View>
   );
 };
+
+export default RegistrationScreen;

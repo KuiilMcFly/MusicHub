@@ -5,6 +5,7 @@ import styles from './styles/AppStyle';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Login} from './screens/Login';
+import RegistrationScreen from './screens/Register';
 
 export const WelcomeScreen = ({navigation}) => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
       <Stack.Navigator initialRouteName="WelcomeScreen">
         <Stack.Screen name="Home" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={RegistrationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
