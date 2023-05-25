@@ -6,6 +6,45 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+// MODELS
+
+model User {
+  id        String   @id @default(uuid())
+  username  String
+  password  String
+  createdAt DateTime @default(now())
+
+  albums Album[]
+}
+
+model Album {
+  id         String   @id @default(uuid())
+  albumName  String   @unique
+  albumImage String
+  createdAt  DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+  songs  AlbumSong[]
+}
+
+model Song {
+  id         String  @id @default(uuid())
+  songName   String
+  urlPath    String
+  isFavorite Boolean @default(false)
+  albums    AlbumSong[]
+}
+
+model AlbumSong {
+  albumId   String
+  songId    String
+  album     Album   @relation(fields: [albumId], references: [id])
+  song      Song    @relation(fields: [songId], references: [id])
+
+  @@id([albumId, songId])
 }
