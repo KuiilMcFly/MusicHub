@@ -1,10 +1,15 @@
 import express from "express";
-import * as dotenv from "dotenv";
-dotenv.config();
+import router from "./router";
+import { protect } from "./modules/auth";
+import { createNewUser, signin } from "./handlers/user";
 
 const app = express();
-const port = 3001;
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log("server started");
-});
+
+app.post("/user", createNewUser);
+app.post("/signin", signin);
+
+app.use("/api", protect, router);
+
+export default app;
